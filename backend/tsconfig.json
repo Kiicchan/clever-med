@@ -7,5 +7,8 @@
       "esnext"
     ],
     "esModuleInterop": true
-  }
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
 }
