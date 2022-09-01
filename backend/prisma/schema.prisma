@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Patient {
+  id        String         @id @default(uuid())
+  name      String
+  birthDate DateTime
+  metrics   HealtMetrics[]
+}
+
+model HealtMetrics {
+  measuredAt        DateTime
+  heartRateBPM      Int
+  bloodPressureHigh Int
+  bloodPressureLow  Int
+  patient           Patient  @relation(fields: [patientId], references: [id])
+  patientId         String
+
+  @@unique([patientId, measuredAt])
+}
