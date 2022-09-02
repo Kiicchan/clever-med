@@ -11,13 +11,15 @@ datasource db {
 }
 
 model Patient {
-  id        String         @id @default(uuid())
+  id        String          @id @default(uuid())
   name      String
   birthDate DateTime
-  metrics   HealtMetrics[]
+  metrics   HealthMetrics[]
+
+  @@unique([name, birthDate])
 }
 
-model HealtMetrics {
+model HealthMetrics {
   measuredAt        DateTime
   heartRateBPM      Int
   bloodPressureHigh Int

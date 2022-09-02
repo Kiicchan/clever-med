@@ -1,9 +1,10 @@
 import { Router } from "express";
-
+import { prisma } from "./db";
 const router = Router()
 
-router.post('/', (request, response) => {
-    return response.status(201).send()
+router.get('/patients', async (request, response) => {
+    const allPatients = await prisma.patient.findMany()
+    return response.status(200).send(allPatients)
 })
 
 export { router }
