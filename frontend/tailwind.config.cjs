@@ -34,6 +34,20 @@ module.exports = {
       },
       purple: '#9A39FC'
 
+    },
+    fontWeight: {
+      regular: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+    },
+    fontSize: {
+      sm: '.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.5rem',
+      '2xl': '1.75rem',
+      '3xl': '2.5rem'
     }
   },
   plugins: [],

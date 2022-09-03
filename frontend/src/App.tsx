@@ -2,7 +2,7 @@
 function App() {
 
   return (
-    <div className="App text-xl text-sky-800">
+    <div className="App text-blue-700 text-3xl">
       Clever Med
     </div>
   )
