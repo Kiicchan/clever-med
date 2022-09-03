@@ -6,7 +6,7 @@ export class HealthMetricsRepository {
         const collection = await prisma.$transaction(
             metrics.map(metric =>
                 prisma.healthMetrics.upsert({
-                    where: { patientId_measuredAt: { ...metric } },
+                    where: { patientId_measuredAt: { measuredAt: metric.measuredAt, patientId: metric.patientId } },
                     update: metric,
                     create: metric
                 })))
