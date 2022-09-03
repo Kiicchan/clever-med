@@ -1,9 +1,10 @@
+import { Aside } from "./components/Aside"
 
 function App() {
 
   return (
-    <div className="App text-blue-700 text-3xl">
-      Clever Med
+    <div className="min-h-screen grid grid-cols-[1fr,1.42fr]">
+      <Aside />
     </div>
   )
 }
