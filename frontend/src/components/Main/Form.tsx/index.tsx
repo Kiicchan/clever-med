@@ -1,4 +1,5 @@
 import { MetricsInserter } from "./MetricsInserter";
+import { MetricsList } from "./MetricsList";
 
 export function Form() {
     return (
@@ -18,7 +19,8 @@ export function Form() {
                 <input type="date" name="Nascimento" id="metrics-date" required className="font-medium text-shades-700 p-2 leading-2 shadow rounded-md invalid:opacity-50 focus:opacity-100" />
             </p>
             <MetricsInserter />
-            <button type="submit" disabled className="block ml-auto text-white text-sm font-semibold leading-none bg-gradient-blue rounded-full py-4 px-6 disabled:opacity-50">Gerar Diário de Saúde</button>
+            <MetricsList />
+            <button type="submit" disabled className="block ml-auto mt-7 text-white text-sm font-semibold leading-none bg-gradient-blue rounded-full py-4 px-6 disabled:opacity-50">Gerar Diário de Saúde</button>
         </form>
     )
 }
