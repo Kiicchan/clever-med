@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: [
     "./index.html",
@@ -28,7 +30,9 @@ module.exports = {
       red: '#FC395C',
       blue: {
         100: '#D1DAFA',
+        200: '#E1E8FF',
         300: '#1F80B7',
+        400: '#4C6FFF',
         500: '#3962FC',
         700: '#384FA1',
       },
@@ -42,6 +46,7 @@ module.exports = {
       bold: 700,
     },
     fontSize: {
+      xsm: '.625rem',
       sm: '.875rem',
       base: '1rem',
       lg: '1.125rem',
@@ -50,5 +55,7 @@ module.exports = {
       '3xl': '2.5rem'
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')({ strategy: 'class' })
+  ],
 }
