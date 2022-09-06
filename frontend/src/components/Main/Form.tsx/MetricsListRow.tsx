@@ -7,7 +7,7 @@ export interface IMetricsListRow {
     bloodPressureHigh: number
     bloodPressureLow: number
     editHandle: () => void
-    deleteHandle: () => void
+    handleDelete: (hour: string) => void
 }
 
 export function MetricsListRow(props: IMetricsListRow) {
@@ -17,7 +17,7 @@ export function MetricsListRow(props: IMetricsListRow) {
             <p>BPM: <span>{props.heartRate}</span></p>
             <p>PRESSÃO ARTERIAL <span>{props.bloodPressureHigh}/{props.bloodPressureLow}</span></p>
             <img src={PenIcon} onClick={props.editHandle} className="cursor-pointer" />
-            <img src={TrashIcon} onClick={props.deleteHandle} className="cursor-pointer" />
+            <img src={TrashIcon} onClick={() => props.handleDelete(props.hour)} className="cursor-pointer" />
         </div>
     )
 }
