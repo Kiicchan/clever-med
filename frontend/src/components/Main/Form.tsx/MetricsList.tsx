@@ -16,6 +16,7 @@ interface IMetricsList {
 
 export function MetricsList({ metrics, setMetrics }: IMetricsList) {
     const stateHistoryRef = useRef<Metric[][]>([])
+    const setMetricHandle = useRef(() => { }) as any
 
     const handleInsert = (metric: Metric) => {
         stateHistoryRef.current.push(metrics)
@@ -37,11 +38,24 @@ export function MetricsList({ metrics, setMetrics }: IMetricsList) {
         if (previousState) setMetrics(previousState)
     }
 
+    const handleEdit = (metric: Metric) => {
+        setMetricHandle.current(metric)
+    }
+
     return (
         <>
-            <MetricsInserter handleInsert={handleInsert} handleUndo={handleUndo} isBackPossible={stateHistoryRef.current.length > 0} />
+            <MetricsInserter
+                setMetricHandle={setMetricHandle}
+                handleInsert={handleInsert}
+                handleUndo={handleUndo}
+                isBackPossible={stateHistoryRef.current.length > 0} />
             <div className="mt-5 [&>*]:mb-3">
-                {metrics.map(metric => <MetricsListRow key={metric.hour} {...metric} handleDelete={handleDelete} />)}
+                {metrics.map(metric =>
+                    <MetricsListRow
+                        key={metric.hour}
+                        {...metric}
+                        onDelete={handleDelete}
+                        onEdit={() => handleEdit(metric)} />)}
             </div>
         </>
     )

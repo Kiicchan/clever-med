@@ -1,6 +1,6 @@
 import BPMIcon from "@/assets/bpm.svg";
 import PressureIcon from "@/assets/pressure.svg";
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
 import { Metric } from "./MetricsList";
 
 const radioOptions = [
@@ -16,15 +16,16 @@ interface IMetricsInserter {
   handleInsert: (metric: Metric) => void
   handleUndo: () => void
   isBackPossible: boolean
+  setMetricHandle: MutableRefObject<(metric: Metric) => void>
 }
 
-export function MetricsInserter({ handleInsert, handleUndo, isBackPossible }: IMetricsInserter) {
+export function MetricsInserter({ handleInsert, handleUndo, isBackPossible, setMetricHandle }: IMetricsInserter) {
   const [BPM, setBPM] = useState('')
   const [highPressure, setHighPressure] = useState('')
   const [lowPressure, setLowPressure] = useState('')
   const [hour, setHour] = useState('')
 
-  const handleAdvance = () => {
+  const onAdvance = () => {
     handleInsert({
       hour,
       heartRate: Number(BPM),
@@ -36,6 +37,13 @@ export function MetricsInserter({ handleInsert, handleUndo, isBackPossible }: IM
     setHighPressure('')
     setLowPressure('')
     setHour('')
+  }
+
+  setMetricHandle.current = (metric) => {
+    setBPM(metric.heartRate.toString())
+    setHighPressure(metric.bloodPressureHigh.toString())
+    setLowPressure(metric.bloodPressureLow.toString())
+    setHour(metric.hour)
   }
 
   return (
@@ -76,7 +84,7 @@ export function MetricsInserter({ handleInsert, handleUndo, isBackPossible }: IM
             >Anterior</button>
           }
           <button type="button"
-            onClick={handleAdvance}
+            onClick={onAdvance}
             disabled={!hour || !highPressure || !lowPressure || !BPM || (Number(highPressure) <= Number(lowPressure))}
             className="relative leading-none py-2 pl-4 pr-6 text-blue-400 text-xsm font-semibold bg-blue-200 rounded 
               enabled:active:bg-blue-400 enabled:active:text-white enabled:hover:bg-blue-100 disabled:opacity-50
