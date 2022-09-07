@@ -1,6 +1,6 @@
 import BPMIcon from "@/assets/bpm.svg";
 import PressureIcon from "@/assets/pressure.svg";
-import { MutableRefObject, RefObject, useState } from "react";
+import { useState } from "react";
 import { Metric } from "./MetricsList";
 
 const radioOptions = [

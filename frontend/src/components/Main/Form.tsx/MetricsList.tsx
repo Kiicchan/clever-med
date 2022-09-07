@@ -1,6 +1,6 @@
 import { MetricsListRow } from "./MetricsListRow";
 import { MetricsInserter } from "./MetricsInserter";
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 
 export interface Metric {
     hour: string

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { MetricsInserter } from "./MetricsInserter";
 import { Metric, MetricsList } from "./MetricsList";
 
 export function Form() {

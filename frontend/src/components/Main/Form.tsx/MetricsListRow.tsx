@@ -1,6 +1,5 @@
 import PenIcon from "@/assets/pen.svg";
 import TrashIcon from "@/assets/trash-can.svg";
-import { MutableRefObject } from "react";
 import { Metric } from "./MetricsList";
 
 export interface IMetricsListRow extends Metric {
