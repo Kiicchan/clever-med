@@ -1,6 +1,6 @@
 import { MetricsListRow } from "./MetricsListRow";
 import { MetricsInserter } from "./MetricsInserter";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 export interface Metric {
     hour: string
@@ -9,8 +9,12 @@ export interface Metric {
     bloodPressureLow: number
 }
 
-export function MetricsList() {
-    const [metrics, setMetrics] = useState<Metric[]>([])
+interface IMetricsList {
+    metrics: Metric[]
+    setMetrics: React.Dispatch<React.SetStateAction<Metric[]>>
+}
+
+export function MetricsList({ metrics, setMetrics }: IMetricsList) {
     const stateHistoryRef = useRef<Metric[][]>([])
 
     const handleInsert = (metric: Metric) => {

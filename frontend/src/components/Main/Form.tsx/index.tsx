@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { MetricsInserter } from "./MetricsInserter";
-import { MetricsList } from "./MetricsList";
+import { Metric, MetricsList } from "./MetricsList";
 
 export function Form() {
+    const [metrics, setMetrics] = useState<Metric[]>([])
+
     return (
         <form>
             <fieldset name="patient-info">
@@ -19,8 +22,8 @@ export function Form() {
                 <input type="date" name="Nascimento" id="metrics-date" required className="font-medium text-shades-700 p-2 leading-2 shadow rounded-md invalid:opacity-50 focus:opacity-100" />
             </div>
             <p className="my-1 text-sm font-bold text-shades-600 leading-none">Selecione o horário para preencher os dados</p>
-            <MetricsList />
-            <button type="submit" disabled className="block ml-auto mt-7 text-white text-sm font-semibold leading-none bg-gradient-blue rounded-full py-4 px-6 disabled:opacity-50">Gerar Diário de Saúde</button>
+            <MetricsList metrics={metrics} setMetrics={setMetrics} />
+            <button type="submit" disabled={metrics.length === 0} className="block ml-auto mt-7 text-white text-sm font-semibold leading-none bg-gradient-blue rounded-full py-4 px-6 disabled:opacity-50">Gerar Diário de Saúde</button>
         </form>
     )
 }
