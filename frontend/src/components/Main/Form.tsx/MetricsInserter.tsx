@@ -1,6 +1,6 @@
 import BPMIcon from "@/assets/bpm.svg";
 import PressureIcon from "@/assets/pressure.svg";
-import { useState } from "react";
+import { MutableRefObject, RefObject, useState } from "react";
 import { Metric } from "./MetricsList";
 
 const radioOptions = [
@@ -15,9 +15,10 @@ const radioOptions = [
 interface IMetricsInserter {
   handleInsert: (metric: Metric) => void
   handleUndo: () => void
+  isBackPossible: boolean
 }
 
-export function MetricsInserter({ handleInsert, handleUndo }: IMetricsInserter) {
+export function MetricsInserter({ handleInsert, handleUndo, isBackPossible }: IMetricsInserter) {
   const [BPM, setBPM] = useState('')
   const [highPressure, setHighPressure] = useState('')
   const [lowPressure, setLowPressure] = useState('')
@@ -30,6 +31,11 @@ export function MetricsInserter({ handleInsert, handleUndo }: IMetricsInserter) 
       bloodPressureLow: Number(lowPressure),
       bloodPressureHigh: Number(highPressure)
     })
+
+    setBPM('')
+    setHighPressure('')
+    setLowPressure('')
+    setHour('')
   }
 
   return (
@@ -61,12 +67,14 @@ export function MetricsInserter({ handleInsert, handleUndo }: IMetricsInserter) 
           </span>
         </div>
         <div className="mt-8 flex justify-end gap-3">
-          <button type="button"
-            onClick={handleUndo}
-            className="relative leading-none py-2 pr-4 pl-6 text-blue-400 text-xsm font-semibold bg-blue-200 rounded 
+          {isBackPossible &&
+            <button type="button"
+              onClick={handleUndo}
+              className="relative leading-none py-2 pr-4 pl-6 text-blue-400 text-xsm font-semibold bg-blue-200 rounded 
           enabled:active:bg-blue-400 enabled:active:text-white enabled:hover:bg-blue-100 disabled:opacity-50
-            before:content-[' '] before:absolute before:left-2 before:border-l before:border-b before:rotate-45 before:w-[0.3rem] before:h-[0.3rem] before:top-[0.65rem]"
-          >Anterior</button>
+          before:content-[' '] before:absolute before:left-2 before:border-l before:border-b before:rotate-45 before:w-[0.3rem] before:h-[0.3rem] before:top-[0.65rem]"
+            >Anterior</button>
+          }
           <button type="button"
             onClick={handleAdvance}
             disabled={!hour || !highPressure || !lowPressure || !BPM || (Number(highPressure) <= Number(lowPressure))}
