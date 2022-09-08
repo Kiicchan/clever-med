@@ -1,6 +1,8 @@
 import { FormEventHandler, useState } from "react";
 import { Metric, MetricsList } from "./MetricsList";
 
+import { axios } from "@/api/axios";
+
 export function Form() {
     const [metrics, setMetrics] = useState<Metric[]>([])
     const [name, setName] = useState('')
@@ -20,7 +22,7 @@ export function Form() {
             }))
         }
 
-        console.log(JSON.stringify(data))
+        axios.post('/').then(res => console.log(res.data)).catch(console.log)
     }
 
 

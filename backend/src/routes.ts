@@ -28,7 +28,7 @@ router.get('/', (request, response) => {
     return response.status(200).send('OK')
 })
 router.post('/', (request, response) => {
-    return response.status(200).send(request.body)
+    return response.status(200).send('POST complete')
 })
 
 export { router }
