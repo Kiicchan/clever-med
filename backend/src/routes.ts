@@ -1,4 +1,4 @@
-import { response, Router } from "express";
+import { Router } from "express";
 import { prisma } from "./db";
 import { AddHealthMetricsController } from "./useCases/AddHealthMetrics/AddHealthMetricsController";
 const router = Router()
@@ -28,7 +28,7 @@ router.get('/', (request, response) => {
     return response.status(200).send('OK')
 })
 router.post('/', (request, response) => {
-    return response.status(200).send('POST complete')
+    return response.status(200).send(request.body)
 })
 
 export { router }
