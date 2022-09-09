@@ -23,10 +23,12 @@ export function Main() {
 
     if (loading) return <Loading />
 
-    if (!data) return (
+    if (!!data) return (
         <main className="mx-auto w-2/3 max-w-xl">
             <div className="bg-white rounded-2xl shadow p-6 mt-32">
                 <PatientInfo name={mockData.name} birthDate={mockData.birthDate} />
+                <hr className="text-shades-100 w-1/3 mx-auto my-4" />
+                <HealthChart metrics={mockData.metrics} />
             </div>
         </main>
     )
