@@ -14,7 +14,13 @@ export class AddHealthMetricsController {
 
         try {
             const healthMetrics = await addHealthMetricsUseCase.execute({ name, birthDate, metrics })
-            return response.status(201).send(healthMetrics)
+            const returnData = {
+                name,
+                birthDate,
+                metrics: healthMetrics.map(({ patientId, ...rest }) => rest) //exclude patient ID for security purposes
+            }
+
+            return response.status(201).send(returnData)
         } catch (error) {
             console.log(error)
             return response.status(500).send()
