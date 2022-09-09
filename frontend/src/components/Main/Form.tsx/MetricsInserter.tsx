@@ -1,5 +1,6 @@
-import BPMIcon from "@/assets/bpm.svg";
-import PressureIcon from "@/assets/pressure.svg";
+/// <reference types="vite-plugin-svgr/client" />
+import { ReactComponent as BPMIcon } from "@/assets/bpm.svg";
+import { ReactComponent as PressureIcon } from "@/assets/pressure.svg";
 import { MutableRefObject, useState } from "react";
 import { Metric } from "./MetricsList";
 
@@ -61,12 +62,12 @@ export function MetricsInserter({ handleInsert, handleUndo, isBackPossible, setM
       </fieldset>
       <fieldset className="flex-1 min-w-0 p-8 mt-auto" name="metric">
         <div className="flex items-center gap-2 flex-wrap">
-          <img src={BPMIcon} />
+          <BPMIcon className="text-[#9A39FC] opacity-50" />
           <label htmlFor="metric-bpm" className="text-sm font-bold text-shades-600 mr-auto">BPM</label>
           <input value={BPM} onChange={(e) => setBPM(e.target.value)} id="metric-bpm" type="number" className="form-input appearance-none rounded-md border-none shadow min-w-0 max-w-[8.5rem] h-9" />
         </div>
         <div className="flex items-center gap-2 flex-wrap mt-7">
-          <img src={PressureIcon} />
+          <PressureIcon className="text-[#1F80B7] opacity-50" />
           <label htmlFor="metric-pressure-low" className="text-sm font-bold text-shades-600 mr-auto">PRESSÃO ARTERIAL</label>
           <label htmlFor="metric-pressure-high" hidden></label>
           <span>
