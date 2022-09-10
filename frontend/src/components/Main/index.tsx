@@ -6,11 +6,12 @@ import { Form } from "./Form.tsx";
 import { HealthChart } from "./HealthInfo/HealthChart";
 import { PatientInfo } from "./HealthInfo/PatientInfo";
 import { RequestDataDTO } from "@/types/MetricDTO";
+import { Error } from "./Error";
 
 
 export function Main() {
     const [data, setData] = useState<RequestDataDTO | null>(null)
-    const [error, setError] = useState<AxiosError | null>(null)
+    const [error, setError] = useState<AxiosError | null | Error>(null)
     const [loading, setLoading] = useState(false)
 
     const handleRequest = (data: any) => {
@@ -26,6 +27,16 @@ export function Main() {
         setError(null)
         setLoading(false)
     }
+
+    if (error) return (
+        <div className="mx-auto w-2/3 max-w-xl">
+            <Error error={error} />
+            <button onClick={handleReset}
+                className="block ml-auto my-7 text-blue-500 border text-sm font-semibold leading-none rounded-full py-4 px-6 hover:bg-blue-500 hover:text-white">
+                Tente Novamente
+            </button>
+        </div>
+    )
 
     if (loading) return <Loading />
 
