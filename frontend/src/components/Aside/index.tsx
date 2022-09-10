@@ -3,14 +3,14 @@ import Img from "@/assets/fitness-woman.png"
 
 export function Aside() {
     return (
-        <div className="relative h-full bg-gradient-to-b from-gradient-blue to-gradient-purple">
-            <header className="p-10">
+        <div className="h-full p-1 md:p-0 bg-gradient-to-b from-gradient-blue to-gradient-purple">
+            <header className="md:p-10">
                 <Logo />
             </header>
-            <h1 className="text-3xl text-white font-bold text-left leading-tight mx-20">Relatórios de saúde em gráficos</h1>
+            <h1 className="text-xl md:text-3xl text-white font-bold text-center md:text-left leading-tight lg:mx-20">Relatórios de saúde em gráficos</h1>
             <div className="relative">
-                <p className="text-lg text-white font-regular text-left max-w-[60%] ml-auto mt-6 mr-5">Em poucos segundos, transforme os seus dados de saúde em gráficos de fácil leitura.</p>
-                <img src={Img} alt="Exercising woman" className="absolute top-0 max-w-[40%] mix-blend-multiply" />
+                <p className="text-sm md:text-lg text-white font-regular text-left md:max-w-[60%] ml-auto md:mt-6 md:mr-5">Em poucos segundos, transforme os seus dados de saúde em gráficos de fácil leitura.</p>
+                <img src={Img} alt="Exercising woman" className="absolute md:top-0 md:max-w-[40%] mix-blend-multiply opacity-50 md:opacity-100 pointer-events-none -z-10 md:z-0" />
             </div>
         </div>
     )

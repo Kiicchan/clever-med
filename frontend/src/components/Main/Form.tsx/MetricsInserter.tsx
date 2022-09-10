@@ -48,11 +48,11 @@ export function MetricsInserter({ handleInsert, handleUndo, isBackPossible, setM
   }
 
   return (
-    <div className="flex border-2 border-shades-100 rounded-2xl">
-      <fieldset className="flex flex-col gap-4 p-6 border-r border-shades-100" name="hour">
+    <div className="flex flex-col md:flex-row border-2 border-shades-100 rounded-2xl">
+      <fieldset className="flex flex-wrap md:flex-col gap-2 md:gap-4 p-2 md:p-6 md:border-r border-shades-100" name="hour">
         {radioOptions.map(value => {
           return (
-            <label key={value} className="flex items-center gap-2 text-shades-600 text-sm font-bold leading-none">
+            <label key={value} className="flex items-center gap-1 md:gap-2 text-shades-600 text-sm font-bold leading-none">
               <input type="radio" name="hour" value={value} checked={hour === value} onChange={(e) => setHour(e.target.value)}
                 className="form-radio w-6 h-6 shadow-[0px_0px_3px_rgba(0,0,0,0.3)] focus:ring-offset-0 focus:ring-inset checked:ring-white checked:ring-4 checked:ring-inset checked:outline-none border-none checked:text-blue-500 checked:bg-none"
               />
@@ -61,17 +61,17 @@ export function MetricsInserter({ handleInsert, handleUndo, isBackPossible, setM
         })}
       </fieldset>
       <fieldset className="flex-1 min-w-0 p-8 mt-auto" name="metric">
-        <div className="flex items-center gap-2 flex-wrap">
-          <BPMIcon className="text-[#9A39FC] opacity-50" />
+        <div className="flex items-center gap-2">
+          <BPMIcon className="text-[#9A39FC] opacity-50 min-w-fit" />
           <label htmlFor="metric-bpm" className="text-sm font-bold text-shades-600 mr-auto">BPM</label>
-          <input value={BPM} onChange={(e) => setBPM(e.target.value)} id="metric-bpm" type="number" className="form-input appearance-none rounded-md border-none shadow min-w-0 max-w-[8.5rem] h-9" />
+          <input value={BPM} onChange={(e) => setBPM(e.target.value)} id="metric-bpm" type="number" className="form-input appearance-none rounded-md border-none shadow min-w-0 w-[8.5rem] h-9" />
         </div>
-        <div className="flex items-center gap-2 flex-wrap mt-7">
-          <PressureIcon className="text-[#1F80B7] opacity-50" />
-          <label htmlFor="metric-pressure-low" className="text-sm font-bold text-shades-600 mr-auto">PRESSÃO ARTERIAL</label>
+        <div className="flex items-center gap-2 mt-7">
+          <PressureIcon className="text-[#1F80B7] opacity-50 min-w-fit" />
+          <label htmlFor="metric-pressure-low" className="text-sm font-bold text-shades-600 mr-auto max-w-min md:max-w-none">PRESSÃO ARTERIAL</label>
           <label htmlFor="metric-pressure-high" hidden></label>
-          <span>
-            <input value={highPressure} onChange={(e) => setHighPressure(e.target.value)} id="metric-pressure-low" type="number" className="form-input appearance-none rounded-md border-none shadow min-w-0 w-[60px] h-9 mr-4" />
+          <span className="flex gap-4">
+            <input value={highPressure} onChange={(e) => setHighPressure(e.target.value)} id="metric-pressure-low" type="number" className="form-input appearance-none rounded-md border-none shadow min-w-0 w-[60px] h-9" />
             <input value={lowPressure} onChange={(e) => setLowPressure(e.target.value)} id="metric-pressure-high" type="number" className="form-input appearance-none rounded-md border-none shadow min-w-0 w-[60px] h-9" />
           </span>
         </div>

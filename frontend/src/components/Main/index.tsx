@@ -33,7 +33,7 @@ export function Main() {
         <Wrapper>
             <Error error={error} />
             <button onClick={handleReset}
-                className="block ml-auto mt-7 text-blue-500 border text-sm font-semibold leading-none rounded-full py-4 px-6 hover:bg-blue-500 hover:text-white">
+                className="block mx-auto mt-7 text-blue-500 border text-sm font-semibold leading-none rounded-full py-4 px-6 hover:bg-blue-500 hover:text-white hover:border-blue-500">
                 Tente Novamente
             </button>
         </Wrapper>
@@ -47,7 +47,7 @@ export function Main() {
 
     if (!!data) return (
         <Wrapper>
-            <div className="bg-white rounded-2xl shadow p-6">
+            <div className="bg-white rounded-2xl shadow p-2 md:p-6">
                 <PatientInfo name={data.name} birthDate={data.birthDate} />
                 <hr className="text-shades-100 w-1/3 mx-auto my-4" />
                 <HealthChart metrics={data.metrics} />

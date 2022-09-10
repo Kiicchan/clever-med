@@ -7,6 +7,7 @@ export function Logo() {
             fill="none"
             viewBox="0 0 190 50"
             name="clever-logo"
+            className="w-28 sm:w-auto"
         >
             <rect width="50" height="50" fill="#fff" rx="10"></rect>
             <path
