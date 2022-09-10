@@ -5,10 +5,11 @@ import { Loading } from "./Loading";
 import { Form } from "./Form.tsx";
 import { HealthChart } from "./HealthInfo/HealthChart";
 import { PatientInfo } from "./HealthInfo/PatientInfo";
+import { RequestDataDTO } from "@/types/MetricDTO";
 
 
 export function Main() {
-    const [data, setData] = useState<any | null>(null)
+    const [data, setData] = useState<RequestDataDTO | null>(null)
     const [error, setError] = useState<AxiosError | null>(null)
     const [loading, setLoading] = useState(false)
 
