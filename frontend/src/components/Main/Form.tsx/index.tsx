@@ -51,7 +51,7 @@ export function Form(props: FormProps) {
                     <MetricsList metrics={metrics} setMetrics={setMetrics} />
                 </>
             }
-            <button type="submit" disabled={!canSubmit} className="block ml-auto mt-7 text-white text-sm font-semibold leading-none bg-gradient-blue rounded-full py-4 px-6 disabled:opacity-50">Gerar Diário de Saúde</button>
+            <button type="submit" disabled={!canSubmit} className="block ml-auto my-7 text-white text-sm font-semibold leading-none bg-gradient-blue rounded-full py-4 px-6 disabled:opacity-50">Gerar Diário de Saúde</button>
         </form>
     )
 }
