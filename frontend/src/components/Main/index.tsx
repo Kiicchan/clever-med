@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { axios } from "@/api/axios";
 import { AxiosError } from "axios";
-import { Loading } from "./Loading";
 import { Form } from "./Form.tsx";
 import { HealthChart } from "./HealthInfo/HealthChart";
 import { PatientInfo } from "./HealthInfo/PatientInfo";
 import { RequestDataDTO } from "@/types/MetricDTO";
-import { Error } from "./Error";
+import { Error } from "./Layout/Error";
+import { Loading } from "./Layout/Loading";
+import { Wrapper } from "./Layout/Wrapper";
 
 
 export function Main() {
@@ -29,36 +30,40 @@ export function Main() {
     }
 
     if (error) return (
-        <div className="mx-auto w-2/3 max-w-xl">
+        <Wrapper>
             <Error error={error} />
             <button onClick={handleReset}
-                className="block ml-auto my-7 text-blue-500 border text-sm font-semibold leading-none rounded-full py-4 px-6 hover:bg-blue-500 hover:text-white">
+                className="block ml-auto mt-7 text-blue-500 border text-sm font-semibold leading-none rounded-full py-4 px-6 hover:bg-blue-500 hover:text-white">
                 Tente Novamente
             </button>
-        </div>
+        </Wrapper>
     )
 
-    if (loading) return <Loading />
+    if (loading) return (
+        <Wrapper>
+            <Loading />
+        </Wrapper>
+    )
 
     if (!!data) return (
-        <main className="mx-auto w-2/3 max-w-xl">
-            <div className="bg-white rounded-2xl shadow p-6 mt-10">
+        <Wrapper>
+            <div className="bg-white rounded-2xl shadow p-6">
                 <PatientInfo name={data.name} birthDate={data.birthDate} />
                 <hr className="text-shades-100 w-1/3 mx-auto my-4" />
                 <HealthChart metrics={data.metrics} />
             </div>
             <button onClick={handleReset}
-                className="block ml-auto my-7 text-blue-500 border text-sm font-semibold leading-none rounded-full py-4 px-6 hover:bg-blue-500 hover:text-white">
+                className="block ml-auto mt-7 text-blue-500 border text-sm font-semibold leading-none rounded-full py-4 px-6 hover:bg-blue-500 hover:text-white">
                 Novo relatório
             </button>
-        </main>
+        </Wrapper>
     )
 
     return (
-        <main className="mx-auto w-2/3 max-w-xl">
-            <h2 className="text-2xl leading-snug font-semibold my-1">Diário de Saúde</h2>
+        <Wrapper>
+            <h2 className="text-2xl leading-snug font-semibold">Diário de Saúde</h2>
             <p className="text-base leading-relaxed font-regular my-1">Crie o seu relatório diário de saúde</p>
             <Form onRequest={handleRequest} />
-        </main>
+        </Wrapper>
     )
 }

@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import Img from "../assets/fitness-woman.png"
+import Img from "@/assets/fitness-woman.png"
 
 export function Aside() {
     return (

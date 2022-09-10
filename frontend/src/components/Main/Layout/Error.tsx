@@ -5,7 +5,7 @@ interface ErrorProps {
 }
 export function Error({ error }: ErrorProps) {
     return (
-        <div className="mt-10 mx-auto border p-2 bg-red rounded-lg text-white text-center">
+        <div className="mx-auto border p-2 bg-red rounded-lg text-white text-center">
             Parece que algo deu errado...
             <br />
             --{error.message}
