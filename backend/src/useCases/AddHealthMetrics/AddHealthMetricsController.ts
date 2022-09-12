@@ -4,8 +4,12 @@ import { AddHealthMetricsUseCase } from "./AddHealthMetricsUseCase";
 
 export class AddHealthMetricsController {
 
+    constructor(
+        private addHealthMetricsUseCase: AddHealthMetricsUseCase,
+    ) { }
+
+
     async handle(request: Request, response: Response): Promise<Response> {
-        const addHealthMetricsUseCase = new AddHealthMetricsUseCase
         const { name, birthDate, metrics }: IAddHealthMetricsDTO = request.body
 
         if (!name || !birthDate || !metrics) {
@@ -13,7 +17,7 @@ export class AddHealthMetricsController {
         }
 
         try {
-            const healthMetrics = await addHealthMetricsUseCase.execute({ name, birthDate, metrics })
+            const healthMetrics = await this.addHealthMetricsUseCase.execute({ name, birthDate, metrics })
             const returnData = {
                 name,
                 birthDate,

@@ -4,8 +4,11 @@ import { PatientsRepository } from "../../repositories/PatientsRepository";
 import { IAddHealthMetricsDTO } from "./AddHealthMetricsDTO";
 
 export class AddHealthMetricsUseCase {
-    patientsRepository = new PatientsRepository
-    healthMetricsRepository = new HealthMetricsRepository
+
+    constructor(
+        private patientsRepository: PatientsRepository,
+        private healthMetricsRepository: HealthMetricsRepository
+    ) { }
 
     async execute({ name, birthDate, metrics }: IAddHealthMetricsDTO): Promise<HealthMetrics[]> {
         let patient = await this.patientsRepository.findByNameAndBirthDate({ name, birthDate: new Date(birthDate) })

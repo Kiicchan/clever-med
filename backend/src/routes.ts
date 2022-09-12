@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { AddHealthMetricsController } from "./useCases/AddHealthMetrics/AddHealthMetricsController";
-const router = Router()
-const addHealthMetricsController = new AddHealthMetricsController()
+import { addHealthMetricsController } from "./useCases/AddHealthMetrics";
 
-router.post('/metrics', addHealthMetricsController.handle)
+const router = Router()
+
+router.post('/metrics', (req, res) => {
+    return addHealthMetricsController.handle(req, res)
+})
 
 export { router }
