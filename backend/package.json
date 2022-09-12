@@ -4,6 +4,8 @@
   "description": "Clever app API",
   "main": "index.js",
   "scripts": {
+    "start:prod": "node dist/server.js",
+    "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
   },
   "keywords": [],
