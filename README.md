@@ -1,6 +1,6 @@
 # <p align="center"> <img width="30" src="./frontend/public/clever.svg"> Clever Med
     "O aplicativo web Clever é utilizado para o acompanhamento de parâmetros de saúde através de gráficos."
-
+Esta aplicação foi desenvolvida para o teste técnico do processo seletivo da Hu.
 
 
 ## ⏯️ Demo
