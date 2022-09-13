@@ -11,6 +11,20 @@ export class AddHealthMetricsUseCase {
     ) { }
 
     async execute({ name, birthDate, metrics }: IAddHealthMetricsDTO): Promise<HealthMetrics[]> {
+        const today = new Date()
+        const birthDateObject = new Date(birthDate)
+
+        if (birthDateObject >= today) {
+            throw new Error("Data de nascimento excede o dia de hoje");
+        }
+
+        metrics.forEach(value => {
+            const measuredAtDateObject = new Date(value.measuredAt)
+            if (measuredAtDateObject < birthDateObject || measuredAtDateObject > today) {
+                throw new Error("Data de medição deve estar entre a data de hoje e a data de nascimento");
+            }
+        })
+
         let patient = await this.patientsRepository.findByNameAndBirthDate({ name, birthDate: new Date(birthDate) })
         if (!patient) {
             patient = await this.patientsRepository.create({ name, birthDate: new Date(birthDate) })

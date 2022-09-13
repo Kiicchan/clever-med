@@ -1,7 +1,13 @@
 import { Patient } from "@prisma/client";
 import { prisma } from "../db";
 
-export class PatientsRepository {
+export interface IPatientsRepository {
+    create(patient: Omit<Patient, 'id'>): Promise<Patient>
+    findByNameAndBirthDate(patient: Omit<Patient, 'id'>): Promise<Patient | null>
+    findById(id: Patient['id']): Promise<Patient | null>
+}
+
+export class PatientsRepository implements IPatientsRepository {
     async create(patient: Omit<Patient, 'id'>): Promise<Patient> {
         const newPatient = await prisma.patient.create({ data: patient })
         return newPatient

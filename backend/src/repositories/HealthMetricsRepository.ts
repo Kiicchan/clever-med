@@ -1,7 +1,11 @@
 import { HealthMetrics } from "@prisma/client";
 import { prisma } from "../db";
 
-export class HealthMetricsRepository {
+export interface IHealthMetricsRepository {
+    upsertMany(metrics: HealthMetrics[]): Promise<HealthMetrics[]>
+}
+
+export class HealthMetricsRepository implements IHealthMetricsRepository {
     async upsertMany(metrics: HealthMetrics[]): Promise<HealthMetrics[]> {
         const collection = await prisma.$transaction(
             metrics.map(metric =>
